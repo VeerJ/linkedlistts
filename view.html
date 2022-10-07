@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <script src="https://code.jquery.com/jquery-3.6.1.min.js" integrity="sha256-o88AwQnZB+VDvE9tvIXrMQaPlFFSUTR+nldQm1LuPXQ=" crossorigin="anonymous"></script>
+        <script src = "newll.js"></script> 
+    </head>
+    <body style="background-color: beige;">
+        <div id="textdiv">
+            <input type="number" id="text"/>
+            <input type="number" id="pos"/>
+        </div>
+        <br>
+        <hr>
+        <div id="buttons">
+            <button id="insert" class="button_input">INSERT</button>
+            <button id="insert_to" class="button_input">INSERT TO</button>
+            <button id="delete" class="button_input">DELETE</button>
+            <button id="delete_at" class="button_input">DELETE AT</button>
+            <button id="display" clas="button_output">DISPLAY</button>
+        </div>
+        <script>
+            window.onload = (evt) => {
+                var l = new LinkedList();
+                var displayContent = document.getElementById("display");
+                var deleteContent = document.getElementById("delete");
+                var deleteContentwithpos = document.getElementById("delete_at");
+                var insertContent = document.getElementById("insert");
+                var insertContentwithpos = document.getElementById("insert_to");
+
+                l.insertLL(50);
+                let display = () => {
+                    l.display();
+                }
+                let deletecon = () => {
+                    l.delete();
+                }
+                let deleteconatpos = () => {
+                    let pos = $("#pos").val();
+                    if (pos == null){
+                        alert("add position");
+                        return;
+                    }
+                    else{
+                        l.delteatpos(pos);
+                    }
+                    $("#pos").val("");
+                }
+                let insertContent1 = () => {
+                    let inp = $("#text").val();
+                    let pos = $("#pos").val();
+                    if (inp.length === 0 && pos.length !== 0 ){
+                        alert("add element in box ; position not required");
+                        return;
+                    }
+                    else{
+                        l.insertLL(inp);
+                    }
+                    $("#text").val("");
+                    $("#pos").val("");
+                }
+                let insertContent2 = () => {
+                    let inp = $("#text").val();
+                    console.log(inp.length);
+                    let pos = $("#pos").val();
+                    if (inp.length === 0 && pos.length === 0){
+                        alert("add element in box ; position is required");
+                        return;
+                    }
+                    else{
+                        l.insertatposLL(inp, pos);
+                    }
+                    $("#text").val("");
+                    $("#pos").val("");
+                }
+                insertContentwithpos === null || insertContentwithpos === void 0 ? void 0 : insertContentwithpos.addEventListener("click", insertContent2);
+                insertContent === null || insertContent === void 0 ? void 0 : insertContent.addEventListener("click", insertContent1);
+                deleteContentwithpos === null || deleteContentwithpos === void 0 ? void 0 : deleteContentwithpos.addEventListener("click", deleteconatpos);
+                deleteContent === null || deleteContent === void 0 ? void 0 : deleteContent.addEventListener("click", deletecon);
+                displayContent === null || displayContent === void 0 ? void 0 : displayContent.addEventListener("click", display);
+            }
+        </script>
+    </body>
+
+</html>
